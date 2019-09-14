@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
-const uuid = require("uuid");
+const uuidv1 = require("uuid/v1");
 
 const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
+      required: true,
       maxlength: 255
     },
     email: {
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//virtual field
+// virtual field
 userSchema
   .virtual("password")
   .set(function(password) {
@@ -50,8 +50,8 @@ userSchema
   });
 
 userSchema.methods = {
-  authenticate: function(plaintext) {
-    return this.encryptPassword(plaintext) === this.hashed_password;
+  authenticate: function(plainText) {
+    return this.encryptPassword(plainText) === this.hashed_password;
   },
 
   encryptPassword: function(password) {
