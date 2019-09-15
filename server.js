@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
+const cors = require("cors");
+
 require("dotenv").config();
 
 // import routes
@@ -14,6 +16,9 @@ const productRoutes = require("./routes/product");
 
 // app
 const app = express();
+
+// cors initialization
+app.use(cors());
 
 // db
 mongoose
